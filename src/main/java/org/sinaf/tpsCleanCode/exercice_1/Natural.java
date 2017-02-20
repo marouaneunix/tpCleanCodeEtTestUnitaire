@@ -1,4 +1,7 @@
 package org.sinaf.tpsCleanCode.exercice_1;
+
+import org.sinaf.tpsCleanCode.exercice_2.Rational;
+
 /**
  * Classe Natural contient des methode pour faire des  opération arithmétiques 
  * simples entre deux objets Natural: l’addition, la multiplication, la soustraction et la division.
@@ -6,27 +9,23 @@ package org.sinaf.tpsCleanCode.exercice_1;
  *
  */
 
-public class Natural {
-	
-	private int value;
+public class Natural extends Rational {
 	
 	
-	public int getValue() {
-		return value;
-	}
 
-	public void setValue(int value) {
-		this.value = value;
-	}
-
-	public Natural(int value) {
-		super();
-		this.value = value;
+	public Natural(int numerator, int denominator) {
+		super(numerator, denominator);
 	}
 
 	public Natural() {
+		super();
 	}
 	
+	
+
+	
+	
+	/*
 	public Natural add(Natural natural) {
 		int result = this.getValue() + natural.getValue();
 		return new Natural(result);
@@ -46,11 +45,9 @@ public class Natural {
 		int result = this.getValue()/natural.getValue();
 		return new Natural(result);
 	}
+	*/
 
-	@Override
-	public String toString() {
-		return value+"";
-	}
+	
 	
 	
 	
