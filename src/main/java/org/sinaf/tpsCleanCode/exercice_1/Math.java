@@ -1,22 +1,18 @@
 package org.sinaf.tpsCleanCode.exercice_1;
 
-import org.sinaf.tpsCleanCode.exercice_2.Rational;
-
 public class Math {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		Natural three = new Natural(3);
+		
+		Natural four = new Natural(4);
 		
 		
-		Rational troisSurQuarte = new Natural(3,4);
-        Rational deuxSurSix = new Natural(2,6);
-      
-       
-       System.out.println("addition : "+troisSurQuarte.add(deuxSurSix));
-       //System.out.println("substruct : "+troisSurQuarte.substract(deuxSurSix));
-       System.out.println("division : "+troisSurQuarte.divide(deuxSurSix));
-       System.out.println("multiplication : "+troisSurQuarte.multiply(deuxSurSix));
-	
+		System.out.println("4 + 3 = "+four.add(three));
+		System.out.println("4 * 3 = "+four.multiply(three));
+		System.out.println("4 - 3 = "+four.substract(three));
+		System.out.println("4 / 3 = "+four.divide(three));
 	
 	}
 

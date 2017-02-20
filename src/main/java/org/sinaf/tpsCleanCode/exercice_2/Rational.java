@@ -39,8 +39,6 @@ public class Rational {
 	 * @param secondNumber
 	 * @return un entier qu'est le Plus Grand Commun Dénominateur (pgcd)
 	 */
-	
-	
 	public int getPgcd(int firstNumber, int secondNumber){
 		if(firstNumber == 0)
 			return secondNumber;
@@ -55,17 +53,6 @@ public class Rational {
     	}
 	}
 	
-	/*
-	public int getPgcd(int firstNumber, int secondNumber){
-		int rest;
-		while(secondNumber != 0) {
-			rest = firstNumber%secondNumber;
-			firstNumber = secondNumber;
-			secondNumber = rest;
-		}
-		return firstNumber;
-	}
-	*/
 	
 	/**
 	 * ppcm (Plus Petit Multiple Commu)
