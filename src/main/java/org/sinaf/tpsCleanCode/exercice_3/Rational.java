@@ -1,4 +1,4 @@
-package org.sinaf.tpsCleanCode.exercice_2;
+package org.sinaf.tpsCleanCode.exercice_3;
 
 /**
  * classe Rational contient des methode pour faire des  opération arithmétiques 
@@ -8,10 +8,11 @@ package org.sinaf.tpsCleanCode.exercice_2;
  *
  */
 
-public class Rational {
+public class Rational extends Numeric{
 	
 	private int numerator;
 	private int denominator;
+	
 	
 	
 	public int getNumerator() {
@@ -85,7 +86,7 @@ public class Rational {
 	}
 	
 	
-	public Rational add(Rational rational) {
+	public Rational addRational(Rational rational) {
 		
 		int ppcm = getPpcm(this.getDenominator(), rational.getDenominator());
 		
@@ -96,7 +97,7 @@ public class Rational {
 	}
 	
 	
-	public Rational multiply(Rational rational) {
+	public Rational multiplyRational(Rational rational) {
 	
 		int numeratorResult = this.getNumerator() *  rational.getNumerator();
 		
@@ -114,9 +115,9 @@ public class Rational {
 	}
 	
 	
-	public Rational substract(Rational rational) {
+	public Rational substractRational(Rational rational) {
 		rational.opposite();
-		return this.add(rational);
+		return this.addRational(rational);
 	}
 	
 	/**
@@ -129,9 +130,9 @@ public class Rational {
 		this.setDenominator(numerator);
 	}
 	
-	public Rational divide(Rational rational){
+	public Rational divideRational(Rational rational){
 		rational.inverse();
-		return multiply(rational);
+		return multiplyRational(rational);
 	}
 	
 	@Override
@@ -160,6 +161,36 @@ public class Rational {
 		if (numerator != other.numerator)
 			return false;
 		return true;
+	}
+	
+	
+	
+	
+	/**
+	 * Les methodes Hérité par la classe Numeric
+	 */
+	
+	
+	
+	@Override
+	Numeric add(Numeric numeric) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	Numeric multiply(Numeric numeric) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	Numeric devide(Numeric numeric) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	Numeric substruct(Numeric numeric) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
