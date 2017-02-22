@@ -6,60 +6,46 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class RationalTest {
-	
-	private Rational troisSurQuatre = new Rational();
-	private Rational deuxSurSix= new Rational();
-	private Rational rationalForAdd= new Rational();
-	private Rational rationalForSub= new Rational();
-	private Rational rationalForDiv= new Rational();
-	private Rational rationalForMult= new Rational();
-	
-	
-	
+
+	Rational troisSurQuatre;
+	Rational deuxSurSix;
+	Rational rationalForAdd;
+	Rational rationalForSub;
+	Rational rationalForDiv;
+	Rational rationalForMult;
+
 	@Before
 	public void setup() {
-		troisSurQuatre.setNumerator(3);
-		troisSurQuatre.setDenominator(4);
-		
-		deuxSurSix.setNumerator(2);
-		deuxSurSix.setDenominator(6);
-				
-		rationalForAdd.setNumerator(13);
-		rationalForAdd.setDenominator(12);
-		
-		rationalForSub.setNumerator(5);
-		rationalForSub.setDenominator(12);
-		
-		rationalForDiv.setNumerator(9);
-		rationalForDiv.setDenominator(4);
-		
-		rationalForMult.setNumerator(1);
-		rationalForMult.setDenominator(4);
+		this.troisSurQuatre = new Rational(3, 4);
+		this.deuxSurSix = new Rational(2, 6);
+		this.rationalForAdd = new Rational(13, 12);
+		this.rationalForSub = new Rational(5, 12);
+		this.rationalForDiv = new Rational(9, 4);
+		this.rationalForMult = new Rational(1, 4);
+
 	}
-	
+
 	@Test
-	public void TestAddRational() {
-		
-		assertEquals(troisSurQuatre.add(deuxSurSix),rationalForAdd);
+	public void testAddRational() {
+
+		assertEquals(this.troisSurQuatre.add(this.deuxSurSix), this.rationalForAdd);
 	}
-	
+
 	@Test
-	public void TestMultiplyRational() {
-		
-		assertEquals(troisSurQuatre.multiply(deuxSurSix),rationalForMult);
+	public void testMultiplyRational() {
+
+		assertEquals(this.troisSurQuatre.multiply(this.deuxSurSix), this.rationalForMult);
 	}
-	
+
 	@Test
-	public void TestDevideRational() {
-		
-		assertEquals(troisSurQuatre.divide(deuxSurSix),rationalForDiv);
+	public void testDevideRational() {
+
+		assertEquals(this.troisSurQuatre.divide(this.deuxSurSix), this.rationalForDiv);
 	}
-	
+
 	@Test
-	public void TestSubstructRational() {
-		assertEquals(troisSurQuatre.substract(deuxSurSix),rationalForSub);
+	public void testSubstructRational() {
+		assertEquals(this.troisSurQuatre.substract(this.deuxSurSix), this.rationalForSub);
 	}
-	
-	
 
 }
