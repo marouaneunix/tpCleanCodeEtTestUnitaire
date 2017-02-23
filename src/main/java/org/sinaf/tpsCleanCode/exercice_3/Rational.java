@@ -24,7 +24,7 @@ public class Rational extends Numeric {
 
 	public Rational(int numerator, int denominator) {
 		if (denominator == 0) {
-			throw new ArithmeticException("il faut avoir un denominator different de zero");
+			throw new ArithmeticException("/ sur Zero");
 		}
 		this.numerator = numerator;
 		this.denominator = denominator;
@@ -33,60 +33,96 @@ public class Rational extends Numeric {
 	/**
 	 * pgcd : le Plus Grand Commun Dénominateur
 	 *
-	 * @param firstDenominator
-	 * @param secondDenominator
 	 * @return un entier qu'est le Plus Grand Commun Dénominateur (pgcd)
 	 */
-	private int getPgcd(int firstDenominator, int secondDenominator) {
-
-		if (secondDenominator == 0) {
-			return firstDenominator;
-		} else if (firstDenominator >= secondDenominator) {
-			return this.getPgcd(secondDenominator, firstDenominator % secondDenominator);
+	public int getPgcd(int a, int b) {
+		a = java.lang.Math.abs(a);
+		b = java.lang.Math.abs(b);
+		if (b == 0) {
+			return a;
+		} else if (a == 0) {
+			return b;
+		} else if (a >= 0) {
+			return this.getPgcd(b, a % b);
 		} else {
-			return this.getPgcd(firstDenominator, secondDenominator % firstDenominator);
+			return this.getPgcd(a, b % a);
 		}
 	}
 
-	/**
-	 * permettant la réduction d'un nombre rationnel
-	 *
-	 * @return un objet Rational réductionner
-	 */
-	private Rational reduce() {
-
-		int heigherDivisor = this.getPgcd(this.numerator, this.denominator);
-
-		return new Rational(this.numerator / heigherDivisor, this.denominator / heigherDivisor);
+	@Override
+	public String toString() {
+		return (String.valueOf(this.numerator) + "/" + String.valueOf(this.denominator)).toString();
 	}
 
-	private Rational addRational(Rational rational) {
-		return new Rational(this.numerator * rational.getDenominator() + rational.getNumerator() * this.denominator, this.denominator * rational.getDenominator()).reduce();
+	@Override
+	public Numeric add(Numeric numeric) {
+		return numeric.addRational(this);
 	}
 
-	private Rational multiplyRational(Rational rational) {
+	@Override
+	public Numeric multiply(Numeric numeric) {
+		return numeric.multiplyRational(this);
+	}
+
+	@Override
+	public Numeric devide(Numeric numeric) {
+		return numeric.devideRational(this);
+	}
+
+	@Override
+	public Numeric substruct(Numeric numeric) {
+		return numeric.substructRational(this);
+	}
+
+	@Override
+	protected Numeric addRational(Rational rational) {
+		return new Rational(this.numerator * rational.getDenominator() + rational.getNumerator() * this.denominator,
+				this.denominator * rational.getDenominator()).reduce();
+	}
+
+	@Override
+	protected Numeric multiplyRational(Rational rational) {
 		return new Rational(this.getNumerator() * rational.getNumerator(),
 				this.getDenominator() * rational.getDenominator()).reduce();
 	}
 
-	/**
-	 * on fait l'opposer d'un rationel pour calculer la soustraction a l'aide de
-	 * l'addition
-	 */
-	private Rational opposite() {
+	@Override
+	protected Numeric substructRational(Rational rational) {
+		return this.apposite().add(rational);
+	}
+
+	@Override
+	protected Numeric devideRational(Rational rational) {
+		return this.inverse().multiply(rational);
+	}
+
+	@Override
+	protected Numeric devideReal(Real real) {
+		return this.multiply(real);
+	}
+
+	@Override
+	protected Numeric addReal(Real real) {
+		return new Real(real.getValue() + this.numerator / (double) this.denominator);
+	}
+
+	@Override
+	protected Numeric multiplyReal(Real real) {
+		return new Real(real.getValue() * this.numerator / this.denominator);
+	}
+
+	@Override
+	protected Numeric substructReal(Real real) {
+		return this.substruct(real.apposite());
+	}
+
+	@Override
+	protected Numeric apposite() {
 		return new Rational(-1 * this.numerator, this.denominator);
 	}
 
-	private Rational substractRational(Rational rational) {
-		return this.addRational(rational.opposite());
-	}
-
-	/**
-	 * on fait l'inverse d'un rationel pour calculer la division a l'aide de la
-	 * multiplication
-	 */
-	private Rational inverse() {
-
+	@Override
+	protected Numeric inverse() {
 		if (this.numerator == 0) {
 			throw new ArithmeticException("Impossible de fair un inverse la cause : numerator = 0");
 		}
@@ -94,13 +130,14 @@ public class Rational extends Numeric {
 		return new Rational(this.getDenominator(), this.getNumerator());
 	}
 
-	private Rational divideRational(Rational rational) {
-		return this.multiplyRational(rational.inverse());
-	}
+	public Rational reduce() {
 
-	@Override
-	public String toString() {
-		return (String.valueOf(this.numerator) + "/" + String.valueOf(this.denominator)).toString();
+		int heigherDivisor = this.getPgcd(this.numerator, this.denominator);
+		if (this.numerator == 0) {
+			return new Rational(this.getNumerator(), this.getDenominator());
+		} else {
+			return new Rational(this.numerator / heigherDivisor, this.denominator / heigherDivisor);
+		}
 	}
 
 	@Override
@@ -131,38 +168,6 @@ public class Rational extends Numeric {
 			return false;
 		}
 		return true;
-	}
-
-	/**
-	 * Les methodes Hérité par la classe Numeric
-	 */
-
-	@Override
-	Numeric add(Numeric numeric) {
-		// TODO Auto-generated method stub
-		Rational rational = (Rational) numeric;
-		return this.addRational(rational);
-	}
-
-	@Override
-	Numeric multiply(Numeric numeric) {
-		// TODO Auto-generated method stub
-		Rational rational = (Rational) numeric;
-		return this.multiplyRational(rational);
-	}
-
-	@Override
-	Numeric devide(Numeric numeric) {
-		// TODO Auto-generated method stub
-		Rational rational = (Rational) numeric;
-		return this.divideRational(rational);
-	}
-
-	@Override
-	Numeric substruct(Numeric numeric) {
-		// TODO Auto-generated method stub
-		Rational rational = (Rational) numeric;
-		return this.substractRational(rational);
 	}
 
 }

@@ -13,52 +13,63 @@ public class Real extends Numeric {
 	}
 
 	public Real(double value) {
-		super();
 		this.value = value;
 	}
 
+	@Override
 	public Real addReal(Real real) {
 		return new Real(this.getValue() + real.getValue());
 	}
 
+	@Override
 	public Real multiplyReal(Real real) {
 		return new Real(this.getValue() * real.getValue());
 	}
 
+	@Override
 	public Real substructReal(Real real) {
-		return new Real(this.getValue() - real.getValue());
+		return this.addReal((Real) real.apposite());
 	}
 
+	@Override
 	public Real devideReal(Real real) {
-		return new Real(this.getValue() / real.getValue());
-	}
-
-	@Override
-	Numeric add(Numeric numeric) {
-		// TODO Auto-generated method stub
-		Real real = (Real) this.getNumericFactory(numeric);
-		return this.addReal(real);
-	}
-
-	@Override
-	Numeric multiply(Numeric numeric) {
-
-		Real real = (Real) this.getNumericFactory(numeric);
 		return this.multiplyReal(real);
 	}
 
 	@Override
-	Numeric devide(Numeric numeric) {
-
-		Real real = (Real) this.getNumericFactory(numeric);
-		return this.devideReal(real);
+	protected Numeric addRational(Rational rational) {
+		return new Real(this.getValue() + (double) rational.getNumerator() / (double) rational.getDenominator());
 	}
 
 	@Override
-	Numeric substruct(Numeric numeric) {
+	protected Numeric multiplyRational(Rational rational) {
+		return new Real(this.getValue() * rational.getNumerator() / rational.getDenominator());
+	}
 
-		Real real = (Real) this.getNumericFactory(numeric);
-		return this.substructReal(real);
+	@Override
+	protected Numeric substructRational(Rational rational) {
+		return new Real(rational.getNumerator() / (double) rational.getDenominator() - this.getValue());
+	}
+
+	@Override
+	public Numeric add(Numeric numeric) {
+		return numeric.addReal(this);
+	}
+
+	@Override
+	public Numeric multiply(Numeric numeric) {
+		return numeric.multiplyReal(this);
+	}
+
+	@Override
+	public Numeric devide(Numeric numeric) {
+		return numeric.inverse().devideReal(this);
+	}
+
+	@Override
+	public Numeric substruct(Numeric numeric) {
+
+		return numeric.apposite().add(this);
 	}
 
 	@Override
@@ -66,29 +77,50 @@ public class Real extends Numeric {
 		return String.valueOf(this.value).toString();
 	}
 
-	/**
-	 * l'objectif de la methode est de convertir un object rational a un objet
-	 * Real
-	 *
-	 * @param rational
-	 *            : un attribut de type Rational
-	 * @return : permet de retourner un objet Real
-	 */
-	private Real formatToRational(Rational rational) {
-		return new Real((double) rational.getNumerator() / (double) rational.getDenominator());
+	@Override
+	protected Numeric apposite() {
+		return new Real(this.value * -1.0);
 	}
 
-	/**
-	 * cette methode permet de Générer des objets de classes concrètes basés sur
-	 * des informations données
-	 *
-	 */
-	private Numeric getNumericFactory(Numeric numeric) {
-		if (numeric instanceof Rational) {
-			return this.formatToRational((Rational) numeric);
-		} else {
-			return numeric;
+	@Override
+	protected Numeric inverse() {
+		if (this.getValue() == 0) {
+			throw new ArithmeticException("diviser par Zero!!");
 		}
+		return new Real(1 / this.getValue());
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(this.value);
+		result = prime * result + (int) (temp ^ temp >>> 32);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (this.getClass() != obj.getClass()) {
+			return false;
+		}
+		Real other = (Real) obj;
+		if (Double.doubleToLongBits(this.value) != Double.doubleToLongBits(other.value)) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	protected Numeric devideRational(Rational rational) {
+		return new Real(rational.getNumerator() / (double) rational.getDenominator() / this.getValue());
 	}
 
 }

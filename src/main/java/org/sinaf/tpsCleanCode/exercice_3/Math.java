@@ -9,13 +9,10 @@ public class Math {
 		Rational deuxSurQuatre = new Rational(2, 4);
 		Numeric unSurCinq = new Rational(1, 5);
 
-		// Numeric dixSurZero = new Rational(10, 0);
-
-		System.out.println(deuxVerguleTrois.add(zeroVerguleCinq));
+		System.out.println(deuxVerguleTrois.add(deuxSurQuatre));
 		System.out.println(unSurQuatre.add(deuxSurQuatre));
-		System.out.println(deuxVerguleTrois.add(unSurQuatre));
-		System.out.println(zeroVerguleCinq.add(unSurCinq));
-		System.out.println(deuxSurQuatre.add(unSurQuatre));
+		System.out.println(deuxSurQuatre.add(unSurCinq));
+		System.out.println(deuxSurQuatre.add(zeroVerguleCinq));
 
 	}
 }
