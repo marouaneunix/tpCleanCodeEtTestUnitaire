@@ -133,11 +133,7 @@ public class Rational extends Numeric {
 	public Rational reduce() {
 
 		int heigherDivisor = this.getPgcd(this.numerator, this.denominator);
-		if (this.numerator == 0) {
-			return new Rational(this.getNumerator(), this.getDenominator());
-		} else {
-			return new Rational(this.numerator / heigherDivisor, this.denominator / heigherDivisor);
-		}
+		return new Rational(this.numerator / heigherDivisor, this.denominator / heigherDivisor);
 	}
 
 	@Override
