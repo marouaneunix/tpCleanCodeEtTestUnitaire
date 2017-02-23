@@ -63,7 +63,11 @@ public class Real extends Numeric {
 
 	@Override
 	public Numeric devide(Numeric numeric) {
-		return numeric.inverse().devideReal(this);
+		try {
+			return numeric.inverse().devideReal(this);
+		} catch (ArithmeticException e) {
+			throw new ArithmeticException("Devide NOOOOO !!!");
+		}
 	}
 
 	@Override

@@ -66,7 +66,11 @@ public class Rational extends Numeric {
 
 	@Override
 	public Numeric devide(Numeric numeric) {
-		return numeric.devideRational(this);
+		try {
+			return numeric.devideRational(this);
+		} catch (ArithmeticException e) {
+			throw new ArithmeticException("Devide NOOOOO !!!");
+		}
 	}
 
 	@Override

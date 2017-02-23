@@ -33,7 +33,7 @@ public class DevideTest extends ARationalTest {
 		try {
 			this.deuxSurHuit.devide(this.zeroSurSept);
 		} catch (ArithmeticException arithmeticException) {
-			assertEquals("Impossible de fair un inverse la cause : numerator = 0", arithmeticException.getMessage());
+			assertEquals("Devide NOOOOO !!!", arithmeticException.getMessage());
 		}
 	}
 
@@ -42,7 +42,7 @@ public class DevideTest extends ARationalTest {
 		try {
 			this.deuxPointCinq.devide(this.zeroSurSept);
 		} catch (ArithmeticException arithmeticException) {
-			assertEquals("Impossible de fair un inverse la cause : numerator = 0", arithmeticException.getMessage());
+			assertEquals("Devide NOOOOO !!!", arithmeticException.getMessage());
 		}
 	}
 
@@ -51,7 +51,7 @@ public class DevideTest extends ARationalTest {
 		try {
 			this.deuxPointCinq.devide(this.zero);
 		} catch (ArithmeticException arithmeticException) {
-			assertEquals("diviser par Zero!!", arithmeticException.getMessage());
+			assertEquals("Devide NOOOOO !!!", arithmeticException.getMessage());
 		}
 	}
 
