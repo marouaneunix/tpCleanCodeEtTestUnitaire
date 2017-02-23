@@ -10,7 +10,7 @@ public class SubstructTest extends ARationalTest {
 
 	@Test
 	public void shoudlReturnUnSurMoinQuatreWhenSubstructRationalFromRational() {
-		assertEquals(new Rational(1, -4), this.deuxSurHuit.substruct(this.deuxSurQuatre));
+		assertEquals(new Rational(-1, 4), this.deuxSurHuit.substruct(this.deuxSurQuatre));
 	}
 
 	@Test
