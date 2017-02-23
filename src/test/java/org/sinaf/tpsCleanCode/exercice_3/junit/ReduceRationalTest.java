@@ -13,7 +13,7 @@ public class ReduceRationalTest extends ARationalTest {
 
 	@Test
 	public void shoudlReturnZeroSurHuitWhenReduce() {
-		assertEquals(this.zeroSurHuit, this.zeroSurHuit.reduce());
+		assertEquals(this.zeroSurUn, this.zeroSurHuit.reduce());
 	}
 
 	@Test
