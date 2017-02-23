@@ -1,4 +1,4 @@
-package org.sinaf.tpsCleanCode.exercice_3;
+package org.sinaf.tpsCleanCode.exercice_3.junit;
 
 import static org.junit.Assert.assertEquals;
 

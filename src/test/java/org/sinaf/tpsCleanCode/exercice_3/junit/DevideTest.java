@@ -1,8 +1,10 @@
-package org.sinaf.tpsCleanCode.exercice_3;
+package org.sinaf.tpsCleanCode.exercice_3.junit;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+import org.sinaf.tpsCleanCode.exercice_3.Rational;
+import org.sinaf.tpsCleanCode.exercice_3.Real;
 
 public class DevideTest extends ARationalTest {
 

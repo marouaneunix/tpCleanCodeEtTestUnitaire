@@ -1,6 +1,10 @@
-package org.sinaf.tpsCleanCode.exercice_3;
+package org.sinaf.tpsCleanCode.exercice_3.junit;
 
 import org.junit.Before;
+import org.sinaf.tpsCleanCode.exercice_3.Numeric;
+import org.sinaf.tpsCleanCode.exercice_3.Rational;
+import org.sinaf.tpsCleanCode.exercice_3.Real;
+import org.sinaf.tpsCleanCode.utils.Pgcd;
 
 public abstract class ARationalTest {
 
@@ -28,6 +32,9 @@ public abstract class ARationalTest {
 
 	@Before
 	public void setUp() {
+
+		Pgcd.icounter = 0;
+
 		this.unSurUn = new Rational(1, 1);
 		this.unSurDeux = new Rational(1, 2);
 		this.deuxSurQuatre = new Rational(2, 4);
